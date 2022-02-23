@@ -119,7 +119,7 @@ class WeatherApp:
                     self.regclear()
                     self.entry.focus()
                 else:
-                    cur.execute("insert into register values(%s,%s,%s,%s)" (self.entry.get() ,self.entry3.get(), self.entry2.get(), self.entry4.get()))
+                    cur.execute("insert into register values(%s,%s,%s,%s)", (self.entry.get() ,self.entry3.get(), self.entry2.get(), self.entry4.get()))
                     con.commit()
                     con.close()
                     messagebox.showinfo("Success","Register Succesfull",parent=self.app)
@@ -219,7 +219,7 @@ class WeatherApp:
             sunset = time.strftime('%I:%M', time.gmtime(json['sys']['sunset'] - 18000))
             icon = json['weather'][0]['icon']
             weather = json['weather'][0]['main']                
-            final=(city,country,temp_celsius,min_temp,max_temp,pressure,humidity,wind,sunrise,sunset,icon,weather)
+            final = (city,country,temp_celsius,min_temp,max_temp,pressure,humidity,wind,sunrise,sunset,icon,weather)
             return final
         else: 
             return None
@@ -245,7 +245,7 @@ class WeatherApp:
             messagebox.showerror('Error','Cannot find city {}'.format(city))
 
     def get_weatherF(self,city):
-            api = "https://api.openweathermap.org/data/2.5/weather? q="+city+"&appid =06c921750b9a82d8f5d1294e1586276f"
+            api = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=06c921750b9a82d8f5d1294e1586276f"
             result = requests.get(api)
             if result :
                 json = result.json()
